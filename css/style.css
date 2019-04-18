@@ -4,6 +4,7 @@ html {
   font-family:  'Montserrat', sans-serif; /* body */
   color: #0F2105;
   font-size: calc((100% + 0.3vw)*0.7);
+  line-height: 1.5;
   scroll-behavior: smooth;
  }
 
@@ -27,6 +28,12 @@ section {
 
 h1, h4 {
   font-family: 'Fira Sans', sans-serif; /* heading */
+  line-height: 2;
+  text-align: center;
+}
+
+h1 {
+  padding: 0.5em 0;
 }
 
 /* header nav */
@@ -225,6 +232,10 @@ footer li {
 .detail {
   display: none;
   margin-bottom: 5%;
+}
+
+.detail-text {
+  margin-bottom: 20px;
 }
 
 .demo {
