@@ -22,7 +22,6 @@ if(isset($_POST['email'])) {
         died('We are sorry, but there appears to be a problem with the form you submitted.');       
     }
  
-     
  
     $first_name = $_POST['first_name']; // required
   
@@ -67,18 +66,18 @@ if(isset($_POST['email'])) {
     $email_message .= "Email: ".clean_string($email_from)."\n";
     $email_message .= "Comments: ".clean_string($comments)."\n";
  
-// create email headers
-$headers = 'From: '.$email_from."\r\n".
-'Reply-To: '.$email_from."\r\n" .
-'X-Mailer: PHP/' . phpversion();
-@mail($email_to, $email_subject, $email_message, $headers);  
-?>
- 
-<!-- include your own success html here -->
- 
-Thank you for contacting us. We will be in touch with you very soon.
- 
-<?php
- header('Location: index.html#thanks');
-}
-?>
+    // email headers
+    $headers = 'From: '.$email_from."\r\n".
+    'Reply-To: '.$email_from."\r\n" .
+    'X-Mailer: PHP/' . phpversion();
+    @mail($email_to, $email_subject, $email_message, $headers);  
+    ?>
+    
+    <!-- include your own success html here -->
+    
+    Thank you for contacting us. We will be in touch with you very soon.
+    
+    <?php
+    header('Location: index.html#thanks');
+    }
+    ?>
