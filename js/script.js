@@ -26,7 +26,7 @@ var projectData = {
 // Make the each DOM of the project list
 for (var i=0; i<Object.keys(projectData).length; i++){
   var projectKey = Object.keys(projectData)[i];
-  $('.projects').append('<div class="project"><a href="index.html#' + projectKey + '"><img src="img/' + projectKey + '-thumbnail.jpg" alt=""></a><div class="title">' + projectData[projectKey]['title'] + '</div></div>');
+  $('.projects').append('<div class="project"><a href="index.html#' + projectKey + '"><img src="img/' + projectKey + '-thumbnail.jpg" alt="thumbnail image"></a><div class="title">' + projectData[projectKey]['title'] + '</div></div>');
 }
 
 // When loading the page, projects fadein in order
@@ -66,7 +66,7 @@ function getParams(projectKey){
   // put images and videos
   for (var i=0; i<projectData[projectKey]['images'].length; i++){
     if (projectData[projectKey]['images'][i].match('jpg')){
-      $('.detail-images').append('<img class="demo" src="img/' + projectData[projectKey]['images'][i] + '" alt="">');
+      $('.detail-images').append('<img class="demo" src="img/' + projectData[projectKey]['images'][i] + '" alt="image of project">');
     }else if (projectData[projectKey]['images'][i].match('mp4')){
       $('.detail-images').append('<video class="demo" src="video/' + projectData[projectKey]['images'][i] + '"autoplay muted loop controls></video>');
     }else{
