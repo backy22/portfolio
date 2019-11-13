@@ -170,6 +170,12 @@ footer li {
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
+h2 {
+  color: #5ecbf5;
+  margin: auto;
+  text-align: center;
+}
+
 .project img {
   object-fit: cover;
   width: 100%;
