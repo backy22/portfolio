@@ -1,0 +1,180 @@
+/* default */
+html {
+  background-color: #F7FAFA;
+  font-family:  'Montserrat', sans-serif; /* body */
+  color: #0F2105;
+  font-size: calc((100% + 0.3vw)*0.7);
+  line-height: 1.8;
+  scroll-behavior: smooth;
+ }
+
+body {
+  margin: 0;
+}
+
+img {
+  max-width:100%;
+  height:auto;
+  vertical-align: bottom;
+}
+
+.container {
+  display: -webkit-flex;
+  display: flex;
+}
+
+h1, h4 {
+  font-family: 'Fira Sans', sans-serif; /* heading */
+  line-height: 2;
+  text-align: center;
+}
+
+h1 {
+  padding: 0.5em 0;
+}
+
+main {
+  padding: 30px;
+  width: 80%;
+}
+
+/* sidebar */
+.sidebar {
+  width: 20%;
+  background-color: #222250;
+  color: #fff;
+  min-height: 100vh;
+}
+
+.sidebar h2 {
+  color: #fff;
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 30px;
+  left: 0;
+}
+
+.sidebar ul {
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar ul li a{
+  display: list-item;
+  font-size: 1em;
+  text-align: center;
+  color: #fff;
+  padding: 10px 0;
+  text-decoration: none;
+}
+
+.logo {
+  text-align: center;
+  margin: 10px;
+}
+
+.logo img {
+  height: 60px;
+}
+
+.sidebar .active a, .sidebar ul li a:hover {
+  color: #5ecbf5;
+}
+
+/* table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background: #fff;
+}
+
+table, th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+/* form */
+.form {
+  width: 100%;
+}
+
+.login_form {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.form form{
+  width: 100%;
+  margin: auto;
+}
+
+input, textarea {
+  font-family: inherit;
+  font-size: 1em;
+}
+
+input::placeholder, textarea::placeholder{
+  color: #ccc;
+}
+
+.form input[type="text"], .form input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+}
+
+.form textarea{
+  width: 100%;
+  height: 32vh;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+  margin-bottom: 20px
+}
+
+.form__submit {
+  text-align: center;
+}
+
+.form input[type="submit"]{
+  background-color: #5ecbf5;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  line-height: 1.4;
+  padding: 10px;
+  width: 180px;
+}
+
+.image_form img {
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+/* projects_list */
+.projects_list__thumbnail {
+  height: 100px;
+}
+
+h2 {
+  color: #5ecbf5;
+  margin: auto;
+  text-align: center;
+  padding: 10px;
+}
+
+.search__form input[type="text"] {
+  width: 80%;
+  margin-right: 10px;
+}
+
+
