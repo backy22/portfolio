@@ -205,7 +205,8 @@ h2 {
   100% {opacity: 1;}
 }
 
-.title {
+.title{
+  color: #0F2105;
   text-align: center;
   font-size:  calc((100% + 0.3vw));
   font-family: 'Fira Sans', sans-serif;

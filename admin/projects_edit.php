@@ -156,16 +156,17 @@ $youtube_ids = implode(",", json_decode($project['youtube_ids'], true));
                     <input type="text" name="youtube_ids" value="<?php echo $youtube_ids; ?>">
 
                     Images:
-                    <div class="image_form">
-                        <?php if (!empty($project['images'])): ?>
-                            <?php foreach(json_decode($project['images'], true) as $value): ?>
+                    <br>
+                    <?php if (!empty($project['images'])): ?>
+                        <?php foreach(json_decode($project['images'], true) as $value): ?>
+                            <div class="image_form">
                                 <input type="checkbox" name="removed_images[]" value="<?php echo $value; ?>">remove<br>
                                 <img src="../upload/<?php echo $value; ?>" alt="images of project">
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                        <br>
-                        <input type="file" name="images[]" multiple="multiple">
-                    </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                    <br>
+                    <input type="file" name="images[]" multiple="multiple">
                     <br>
 
                     Category:

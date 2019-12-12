@@ -65,9 +65,9 @@ if (isset($_POST['first']))
                 <h2>Portfolio CMS</h2>
 
                 <ul>
-                    <li class="active"><a href="projects_list.php">Manage Projects</a></li>
+                    <li><a href="projects_list.php">Manage Projects</a></li>
                     <li><a href="projects_add.php">New Project</a></li>
-                    <li><a href="user_edit.php">My Page</a></li>
+                    <li class="active"><a href="user_edit.php">My Page</a></li>
                     <li><a href="contacts_list.php">Contacts</a></li>
                     <li><a href="../index.php" target="blank">Client Page</a></li>
                     <li><a href="logout.php">Logout</a></li>
@@ -87,12 +87,13 @@ if (isset($_POST['first']))
                     <input type="text" name="last" value="<?php echo $user['last']; ?>">
 
                     Image:
-                    <div class="image_form">
-                        <?php if (!empty($user['image'])): ?>
+                    <br>
+                    <?php if (!empty($user['image'])): ?>
+                        <div class="image_form">
                             <img src="../upload/<?php echo $user['image']; ?>" alt="image of user">
-                        <?php endif; ?> 
-                        <input type="file" name="image">
-                    </div>
+                        </div>
+                    <?php endif; ?> 
+                    <input type="file" name="image">
                     <br>  
 
                     About:

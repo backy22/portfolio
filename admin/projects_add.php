@@ -31,8 +31,13 @@ if (isset($_POST['title']))
 
     $skills = explode(",", $_POST['skills']);
     $skills = json_encode($skills);
-    $youtube_ids = explode(",", $_POST['youtube_ids']);
-    $youtube_ids = json_encode($youtube_ids);
+    if(!empty($_POST['youtube_ids'])){
+        $youtube_ids = explode(",", $_POST['youtube_ids']);
+        $youtube_ids = json_encode($youtube_ids);
+    }else{
+        $youtube_ids = null;
+    }
+
 
     $title = mysqli_real_escape_string($connect, $_POST['title']);
     $explanation = mysqli_real_escape_string($connect, $_POST['explanation']);

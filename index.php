@@ -62,7 +62,7 @@ if (isset($_GET['id'])) {
             <?php endforeach; ?>
         </h4>
         <div class="detail-text">
-            <?php echo $project['explanation']; ?>
+            <?php echo nl2br($project['explanation']); ?>
             <p class="link">
             <?php if(!empty($project['website_url'])): ?>
                 <a href="<?php echo $project['website_url']; ?>" target="_blank"> >> View the website</a>&nbsp;&nbsp;
@@ -104,10 +104,12 @@ if (isset($_GET['id'])) {
         ?>
 
         <?php while($record = mysqli_fetch_assoc($result)): ?>
-            <div class="project">
-                <a href="index.php?id=<?php echo $record['id']; ?>"><img src="img/<?php echo $record['thumbnail']; ?>" alt="thumbnail image"></a>
-                <div class="title"><?php echo $record['title']; ?></div>
-            </div>
+            <a href="index.php?id=<?php echo $record['id']; ?>">
+                <div class="project">
+                    <img src="upload/<?php echo $record['thumbnail']; ?>" alt="thumbnail image">
+                    <div class="title"><?php echo $record['title']; ?></div>
+                </div>
+            </a>
         <?php endwhile; ?>
       </div>
     <?php endwhile; ?>

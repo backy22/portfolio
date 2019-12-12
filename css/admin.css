@@ -155,6 +155,10 @@ input::placeholder, textarea::placeholder{
   width: 180px;
 }
 
+.image_form {
+  display: inline-block;
+}
+
 .image_form img {
   height: 100px;
   margin-bottom: 10px;
