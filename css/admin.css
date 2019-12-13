@@ -128,6 +128,10 @@ input::placeholder, textarea::placeholder{
   border: 1px solid #ccc;
 }
 
+.form input[type="file"] {
+  margin-bottom: 20px;
+}
+
 .form textarea{
   width: 100%;
   height: 32vh;
@@ -164,9 +168,17 @@ input::placeholder, textarea::placeholder{
   margin-bottom: 10px;
 }
 
+.password {
+  margin-bottom: 0 !important;
+}
+
+.login_form .form__submit {
+  margin-top: 10px;
+}
+
 /* projects_list */
 .projects_list__thumbnail {
-  height: 100px;
+  max-width: 100px;
 }
 
 h2 {

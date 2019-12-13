@@ -5,11 +5,10 @@ include('../includes/functions.php');
 
 if (isset($_POST['email']))
 {
-    // Check the database for a record matching the email and password
+    // Check the database for a record matching the email
     $query = 'SELECT id,first,last,email
         FROM portfolio_users
         WHERE email = "'.$_POST['email'].'"
-        AND password = "'.md5($_POST['password']).'"
         LIMIT 1';
     $result = mysqli_query($connect, $query);
 
@@ -17,16 +16,15 @@ if (isset($_POST['email']))
     if(mysqli_num_rows($result) == 1)
     {
         $record = mysqli_fetch_assoc( $result );
+        $email_to = $record['email'];
+        $email_subject = "Your Password of Portfolio CMS";
 
-        $_SESSION['id'] = $record['id'];
-        $_SESSION['first'] = $record['first'];
-        $_SESSION['last'] = $record['last'];
-        $_SESSION['email'] = $record['email'];
-        
-        header('Location: projects_list.php');
+        $token = bin2hex(random_bytes(50));
+        $_SESSION['token'] = $token;
 
-        //print_r( $record );
-        //die();
+        $email_message = "Hi there, click on this <a href=\"https://ayatsubakino.com/portfolio/admin/new_password.php?token=" .$token. "\">link</a> to reset your password on our site";
+        $headers = "From: info@ayatsubakino.com";
+        @mail($email_to, $email_subject, $email_message, $headers);  
     }
 
     // If there is no match redirect user to the login form
@@ -62,16 +60,12 @@ if (isset($_POST['email']))
     <h2>Login</h2>
 
     <div class="form login_form">
-        <form method="post" action="index.php">
+        <form method="post" action="forget.php">
             Email:
             <input type="text" name="email">
 
-            Password:
-            <input class="password" type="text" name="password">
-            <a href="forget.php">Forget Password?</a>
-
             <div class="form__submit">
-                <input type="submit" value="Login">
+                <input type="submit" value="Send">
             </div>
         </form>
     </div>

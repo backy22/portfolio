@@ -128,13 +128,14 @@ $youtube_ids = implode(",", json_decode($project['youtube_ids'], true));
                     <input type="text" name="title" value="<?php echo $project['title']; ?>">
 
                     Thumbnail:
-                    <div class="image_form">
-                        <?php if (!empty($project['thumbnail'])): ?>
+                    <br>
+                    <?php if (!empty($project['thumbnail'])): ?>
+                        <div class="image_form">
                             <img src="../upload/<?php echo $project['thumbnail']; ?>" alt="thumbnail of project">
-                        <?php endif; ?>
-                        <br>
-                        <input type="file" name="thumbnail">
-                    </div>
+                        </div>
+                    <?php endif; ?>
+                    <br>
+                    <input type="file" name="thumbnail">
                     <br> 
 
                     Skills:

@@ -3,13 +3,11 @@
 include('../includes/database.php');
 include('../includes/functions.php');
 
-if (isset($_POST['email']))
-{
+if (isset($_GET['token']) && $_GET['token'] == $_SESSION['token']){
     // Check the database for a record matching the email and password
     $query = 'SELECT id,first,last,email
         FROM portfolio_users
         WHERE email = "'.$_POST['email'].'"
-        AND password = "'.md5($_POST['password']).'"
         LIMIT 1';
     $result = mysqli_query($connect, $query);
 
@@ -18,9 +16,12 @@ if (isset($_POST['email']))
     {
         $record = mysqli_fetch_assoc( $result );
 
-        $_SESSION['id'] = $record['id'];
-        $_SESSION['first'] = $record['first'];
-        $_SESSION['last'] = $record['last'];
+        $query = 'UPDATE portfolio_users SET
+            password = "'.md5($_POST['password']).'"
+            WHERE email = "'.$_POST['email'].'"
+            LIMIT 1';
+
+        mysqli_query($connect, $query);
         $_SESSION['email'] = $record['email'];
         
         header('Location: projects_list.php');
@@ -32,11 +33,13 @@ if (isset($_POST['email']))
     // If there is no match redirect user to the login form
     else
     {
-        header('Location: index.php');
+        header('Location: new_password.php');
     }
 
     //die( 'LOGIN' );
     echo mysqli_error($connect);
+}else{
+    header('Location: forget.php');
 }
 
 ?>
@@ -59,16 +62,15 @@ if (isset($_POST['email']))
         <a href="projects_list.php"><img src="../img/logo.png" alt="the logo of aya tsubakino"></a>
     </div>
     <h1>Portfolio CMS</h1>
-    <h2>Login</h2>
+    <h2>New Password</h2>
 
     <div class="form login_form">
-        <form method="post" action="index.php">
+        <form method="post" action="new_password.php">
             Email:
             <input type="text" name="email">
 
-            Password:
+            New Password:
             <input class="password" type="text" name="password">
-            <a href="forget.php">Forget Password?</a>
 
             <div class="form__submit">
                 <input type="submit" value="Login">

@@ -34,6 +34,7 @@ if(isset($_POST['search'])){
         name
         FROM portfolio_projects LEFT JOIN portfolio_categories ON portfolio_categories.id = portfolio_projects.category_id ORDER BY id ASC';
 }
+
 $result = mysqli_query($connect, $query);
 
 

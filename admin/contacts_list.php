@@ -7,9 +7,9 @@ page_secure();
 
 if(isset($_GET['delete']))
 {
-    $query = 'DELETE FROM portfolio_projects WHERE id = '.$_GET['delete'].' LIMIT 1';
+    $query = 'DELETE FROM portfolio_contacts WHERE id = '.$_GET['delete'].' LIMIT 1';
     mysqli_query($connect, $query);
-    header('Location: projects_list.php');
+    header('Location: contacts_list.php');
 }
 
 ?>
@@ -69,6 +69,7 @@ if(isset($_GET['delete']))
                     <th>Email</th>
                     <th>Comment</th>
                     <th>Sent Date</th>
+                    <th></th>
                 </tr>
 
                 <?php while($record = mysqli_fetch_assoc($result)): ?>
@@ -78,6 +79,7 @@ if(isset($_GET['delete']))
                         <td><?php echo $record['email']; ?></td>
                         <td><?php echo $record['comment']; ?></td>
                         <td><?php echo $record['sent_at']; ?></td>
+                        <td><a href="contacts_list.php?delete=<?php echo $record['id']; ?>">Delete</td>
                     </tr>
                 <?php endwhile; ?>
             </table>
