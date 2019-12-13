@@ -57,7 +57,7 @@ if(isset($_GET['delete']))
                     email,
                     comment,
                     sent_at
-                    FROM portfolio_contacts ORDER BY sent_at ASC';
+                    FROM portfolio_contacts ORDER BY sent_at DESC';
                 $result = mysqli_query($connect, $query);
             ?>
 
