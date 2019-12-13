@@ -17,13 +17,20 @@ if (isset($_POST['email']))
     {
         $record = mysqli_fetch_assoc( $result );
         $email_to = $record['email'];
-        $email_subject = "Your Password of Portfolio CMS";
+        $email_subject = "Reset Password link of Portfolio CMS";
 
         $token = bin2hex(random_bytes(50));
-        $_SESSION['token'] = $token;
+  
+        $query = 'UPDATE portfolio_users SET
+                token = "'.$token.'"
+                WHERE email = "'.$record['email'].'"
+                LIMIT 1';
+        mysqli_query($connect, $query);
 
-        $email_message = "Hi there, click on this <a href=\"https://ayatsubakino.com/portfolio/admin/new_password.php?token=" .$token. "\">link</a> to reset your password on our site";
+        $email_message = "<html><body><div>Hi there, click on this <a href=\"https://ayatsubakino.com/admin/new_password.php?&token=".$token."\">link</a> to reset your password on our site</div></body></html>";
         $headers = "From: info@ayatsubakino.com";
+        $headers .= "Content-Type: text/html;";
+        print_r($email_message);
         @mail($email_to, $email_subject, $email_message, $headers);  
     }
 

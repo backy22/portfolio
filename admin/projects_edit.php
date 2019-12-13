@@ -123,7 +123,7 @@ $youtube_ids = implode(",", json_decode($project['youtube_ids'], true));
             <h2>Edit Projects</h2>
 
             <div class="form">
-                <form method="post" action="projects_edit.php?id=<?php echo $_GET['id'] ?>" enctype="multipart/form-data">
+                <form method="post" action="projects_edit.php?id=<?php echo $_GET['id']; ?>" enctype="multipart/form-data">
                     Title:
                     <input type="text" name="title" value="<?php echo $project['title']; ?>">
 

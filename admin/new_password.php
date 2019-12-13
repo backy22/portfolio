@@ -3,40 +3,30 @@
 include('../includes/database.php');
 include('../includes/functions.php');
 
-if (isset($_GET['token']) && $_GET['token'] == $_SESSION['token']){
-    // Check the database for a record matching the email and password
-    $query = 'SELECT id,first,last,email
+if (isset($_GET['token']) or !empty($_SESSION['token'])){
+    if (isset($_GET['token'])){
+        $token = $_GET['token'];
+        $_SESSION['token'] = $token;
+    }else{
+        $token = $_SESSION['token'];
+    }
+
+    $query = 'SELECT id,email,token
         FROM portfolio_users
-        WHERE email = "'.$_POST['email'].'"
+        WHERE token = "'.$token.'"
         LIMIT 1';
     $result = mysqli_query($connect, $query);
-
-    // If there is a match log the user in
-    if(mysqli_num_rows($result) == 1)
-    {
-        $record = mysqli_fetch_assoc( $result );
-
+    $record = mysqli_fetch_assoc( $result );
+    
+    if($record['token'] == $_SESSION['token'] && isset($_POST['email'])){
         $query = 'UPDATE portfolio_users SET
             password = "'.md5($_POST['password']).'"
             WHERE email = "'.$_POST['email'].'"
             LIMIT 1';
-
         mysqli_query($connect, $query);
-        $_SESSION['email'] = $record['email'];
-        
         header('Location: projects_list.php');
-
-        //print_r( $record );
-        //die();
     }
 
-    // If there is no match redirect user to the login form
-    else
-    {
-        header('Location: new_password.php');
-    }
-
-    //die( 'LOGIN' );
     echo mysqli_error($connect);
 }else{
     header('Location: forget.php');

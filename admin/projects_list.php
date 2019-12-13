@@ -101,7 +101,11 @@ $result = mysqli_query($connect, $query);
                         <td><?php echo $record['id']; ?></td>
                         <td><?php echo $record['push_rank']; ?></td>
                         <td><?php echo $record['title']; ?></td>
-                        <td><img class="projects_list__thumbnail" src="../upload/<?php echo $record['thumbnail']; ?>"></td>
+                        <td>
+                            <?php if($record['thumbnail']): ?>
+                                <img class="projects_list__thumbnail" src="../upload/<?php echo $record['thumbnail']; ?>">
+                            <?php endif; ?>
+                        </td>
                         <td><?php echo $record['name']; ?></td>
                         <td><a href="projects_edit.php?id=<?php echo $record['id']; ?>">Edit</a></td>
                         <td><a href="projects_list.php?delete=<?php echo $record['id']; ?>">Delete</td>
