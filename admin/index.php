@@ -24,18 +24,15 @@ if (isset($_POST['email']))
         $_SESSION['email'] = $record['email'];
         
         header('Location: projects_list.php');
-
-        //print_r( $record );
-        //die();
     }
 
     // If there is no match redirect user to the login form
     else
     {
-        header('Location: index.php');
+        message_set("Email or Password is not found.");
+        header('Location: index.php'); 
     }
 
-    //die( 'LOGIN' );
     echo mysqli_error($connect);
 }
 
@@ -59,6 +56,7 @@ if (isset($_POST['email']))
         <a href="projects_list.php"><img src="../img/logo.png" alt="the logo of aya tsubakino"></a>
     </div>
     <h1>Portfolio CMS</h1>
+    <div class="alert"><?php message_get(); ?></div>
     <h2>Login</h2>
 
     <div class="form login_form">

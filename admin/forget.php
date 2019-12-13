@@ -12,7 +12,7 @@ if (isset($_POST['email']))
         LIMIT 1';
     $result = mysqli_query($connect, $query);
 
-    // If there is a match log the user in
+    // If there is a match, send a link to reset password
     if(mysqli_num_rows($result) == 1)
     {
         $record = mysqli_fetch_assoc( $result );
@@ -27,20 +27,28 @@ if (isset($_POST['email']))
                 LIMIT 1';
         mysqli_query($connect, $query);
 
-        $email_message = "<html><body><div>Hi there, click on this <a href=\"https://ayatsubakino.com/admin/new_password.php?&token=".$token."\">link</a> to reset your password on our site</div></body></html>";
-        $headers = "From: info@ayatsubakino.com";
-        $headers .= "Content-Type: text/html;";
-        print_r($email_message);
-        @mail($email_to, $email_subject, $email_message, $headers);  
+        $email_message = "<html><body>
+            <div>
+                Hi there, click on this 
+                <a href=\"https://ayatsubakino.com/admin/new_password.php?&token=".$token."\">link</a> 
+                to reset your password on our site
+            </div>
+            </body></html>";
+        $headers[] = 'MIME-Version: 1.0';
+        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+        $headers[] = "From: info@ayatsubakino.com";
+        @mail($email_to, $email_subject, $email_message, $headers);
+
+        print_r("As it takes some time to get the link through email, you can access the link from <a href=\"https://ayatsubakino.com/admin/new_password.php?&token=".$token."\">here</a>. ※Only for checking my assignment");
     }
 
-    // If there is no match redirect user to the login form
+    // If there is no match, redirece user to the login form
     else
     {
+        message_set("There is no match with the email.");
         header('Location: index.php');
     }
 
-    //die( 'LOGIN' );
     echo mysqli_error($connect);
 }
 
@@ -64,6 +72,7 @@ if (isset($_POST['email']))
         <a href="projects_list.php"><img src="../img/logo.png" alt="the logo of aya tsubakino"></a>
     </div>
     <h1>Portfolio CMS</h1>
+    <div class="alert"><?php message_get(); ?></div>
     <h2>Login</h2>
 
     <div class="form login_form">

@@ -37,8 +37,6 @@ if(isset($_POST['search'])){
 
 $result = mysqli_query($connect, $query);
 
-
-
 ?>
 
 <!doctype html>

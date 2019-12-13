@@ -10,3 +10,16 @@ function page_secure()
         header( 'Location: index.php' );
     }
 }
+
+function message_set( $message )
+{
+    $_SESSION['message'] = $message;
+}
+
+function message_get()
+{
+    if( isset( $_SESSION['message'] ) ) {
+        echo $_SESSION['message'];
+        unset( $_SESSION['message']);
+    }
+}

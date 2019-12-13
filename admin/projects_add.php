@@ -7,7 +7,7 @@ page_secure();
 
 if (isset($_POST['title']))
 {
-
+    // Upload the thumbnail
     if (!empty($_FILES['thumbnail']['tmp_name'])){
         $thumbnail = basename($_FILES['thumbnail']['name']);
         $filename = '../upload/'.$thumbnail;
@@ -16,6 +16,7 @@ if (isset($_POST['title']))
         $thumbnail = null;
     }
 
+    // Upload the images
     $images = array();
     if (!empty($_FILES['images'])){
         for($i = 0; $i < count($_FILES["images"]["tmp_name"]); $i++ ){
@@ -31,13 +32,13 @@ if (isset($_POST['title']))
 
     $skills = explode(",", $_POST['skills']);
     $skills = json_encode($skills);
+
     if(!empty($_POST['youtube_ids'])){
         $youtube_ids = explode(",", $_POST['youtube_ids']);
         $youtube_ids = json_encode($youtube_ids);
     }else{
         $youtube_ids = null;
     }
-
 
     $title = mysqli_real_escape_string($connect, $_POST['title']);
     $explanation = mysqli_real_escape_string($connect, $_POST['explanation']);
@@ -47,6 +48,7 @@ if (isset($_POST['title']))
     $github_url = $_POST['github_url'];
     $category_id = $_POST['category_id'];
 
+    // Insert new data
     $query = "INSERT INTO portfolio_projects (
         title,
         thumbnail,

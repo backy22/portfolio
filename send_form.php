@@ -23,7 +23,6 @@ if(isset($_POST['email'])) {
         died('We are sorry, but there appears to be a problem with the form you submitted.');       
     }
 
-
     $name = $_POST['name']; // required
     $email_from = $_POST['email']; // required
     $comment = $_POST['comment']; // required
@@ -85,10 +84,6 @@ if(isset($_POST['email'])) {
         'X-Mailer: PHP/' . phpversion();
     @mail($email_to, $email_subject, $email_message, $headers);  
 ?>
-
-    <!-- include your own success html here -->
-
-    Thank you for contacting us. We will be in touch with you very soon.
 
 <?php
     header('Location: index.php#thanks');

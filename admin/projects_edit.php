@@ -12,7 +12,7 @@ $project = mysqli_fetch_assoc($result);
 
 if (isset($_POST['title']))
 {
-
+    // Upload the thumbnail
     if (!empty($_FILES['thumbnail']['tmp_name'])){
         $thumbnail = basename($_FILES['thumbnail']['name']);
         $filename = '../upload/'.$thumbnail;
@@ -23,6 +23,7 @@ if (isset($_POST['title']))
         $thumbnail = null;
     }
 
+    // Upload the images
     if (!empty($project['images'])){
         $images = json_decode($project['images']);
         if (!empty($_POST['removed_images'])){
@@ -47,6 +48,7 @@ if (isset($_POST['title']))
 
     $skills = explode(",", $_POST['skills']);
     $skills = json_encode($skills);
+
     if(!empty($_POST['youtube_ids'])){
         $youtube_ids = explode(",", $_POST['youtube_ids']);
         $youtube_ids = json_encode($youtube_ids);
@@ -62,6 +64,7 @@ if (isset($_POST['title']))
     $github_url = $_POST['github_url'];
     $category_id = $_POST['category_id'];
 
+    // Update the database
     $query = "UPDATE portfolio_projects SET
         title = '$title',
         thumbnail = '$thumbnail',

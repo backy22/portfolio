@@ -11,24 +11,29 @@ if (isset($_GET['token']) or !empty($_SESSION['token'])){
         $token = $_SESSION['token'];
     }
 
+    // Check the database for a record matching the token
     $query = 'SELECT id,email,token
         FROM portfolio_users
         WHERE token = "'.$token.'"
         LIMIT 1';
     $result = mysqli_query($connect, $query);
     $record = mysqli_fetch_assoc( $result );
-    
+
+    // When the user post email, compare the token with the session token and update the password.  
     if($record['token'] == $_SESSION['token'] && isset($_POST['email'])){
         $query = 'UPDATE portfolio_users SET
             password = "'.md5($_POST['password']).'"
             WHERE email = "'.$_POST['email'].'"
             LIMIT 1';
         mysqli_query($connect, $query);
-        header('Location: projects_list.php');
+        message_set("Please login with the new password.");
+        header('Location: index.php');
     }
 
     echo mysqli_error($connect);
-}else{
+
+}else{ // If there is no token, redirect to forget.php
+    message_set("The link is not valid. Please try again.");
     header('Location: forget.php');
 }
 
