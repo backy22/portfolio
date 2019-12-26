@@ -85,7 +85,11 @@ if (isset($_POST['title']))
 }
 
 $skills = implode(",", json_decode($project['skills'], true));
-$youtube_ids = implode(",", json_decode($project['youtube_ids'], true));
+if(!empty($project['youtube_ids'])){
+    $youtube_ids = implode(",", json_decode($project['youtube_ids'], true));
+}else{
+    $youtube_ids = null;
+}
 
 ?>
 
