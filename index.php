@@ -74,7 +74,7 @@ if (isset($_GET['id'])) {
         </div>
         <div class="detail-images">
             <?php foreach($images as $value): ?>
-                <img class="demo" src="img/<?php echo $value; ?>" alt="image of project">
+                <img class="demo" src="upload/<?php echo $value; ?>" alt="image of project">
             <?php endforeach; ?>
             <?php if(!empty($youtube_ids)): ?>
                 <?php foreach($youtube_ids as $value): ?>
